@@ -9,6 +9,8 @@ Track your interests over time.
 ## About
 
 ### Description
+Have you ever wanted to remember that movie you watched 2yrs ago that you can't quite remmember? It's on the tip of our tongue...but it's not clear. I certainly have.
+
 We all have many interests that have changed over time. Specifically Interests in media content. For me, it specifically has to do with books, anime or movies I watched a couple of times in the past and can't remember right now. I wish I could remember it, better still, I wished I had tracked it so that in the future, I would be able to come back to it.
 
 That is what *Interest* does. 
