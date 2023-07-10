@@ -15,7 +15,7 @@ That is what *Interest* does.
 Interests helps you track all your interest chronologically, in an easy use interface. 
 You never have to rack your brains to remember that old high school movie you watched with your friends, or that random show you saw at Grandma's house. Once you have tracked it with interests, it can be retrieved.
 
-Interest is available for *web*, and *mobile*.
+Interest is available for **web**, and **mobile**.
 
 ### Participant
 [Github](https://github.com/adeleke5140)
