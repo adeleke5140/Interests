@@ -5,6 +5,7 @@ import React, {
   PropsWithChildren,
   useEffect,
   useState,
+  useContext
 } from "react";
 
 type ColorModeContextType = {
@@ -57,3 +58,5 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
     </ColorModeContext.Provider>
   );
 };
+
+export const useColorMode = () => useContext(ColorModeContext);

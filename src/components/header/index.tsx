@@ -1,5 +1,6 @@
-import DarkModeOutlined from "@mui/icons-material/DarkModeOutlined";
-import LightModeOutlined from "@mui/icons-material/LightModeOutlined";
+import { ThemeProvider } from '@emotion/react';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import AppBar from "@mui/material/AppBar";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
@@ -7,9 +8,10 @@ import Stack from "@mui/material/Stack";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { useGetIdentity } from "@refinedev/core";
-import { HamburgerMenu, RefineThemedLayoutV2HeaderProps } from "@refinedev/mui";
-import React, { useContext } from "react";
-import { ColorModeContext } from "../../contexts/color-mode";
+import { RefineThemedLayoutV2HeaderProps } from "@refinedev/mui";
+import { iconTheme } from 'contexts/theme';
+import React from "react";
+import { useColorMode } from "../../contexts/color-mode";
 
 type IUser = {
   id: number;
@@ -20,9 +22,9 @@ type IUser = {
 export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
   isSticky = true,
 }) => {
-  const { mode, setMode } = useContext(ColorModeContext);
+  const { mode, setMode } = useColorMode();
 
-  const { data: user } = useGetIdentity<IUser>();
+  // const { data: user } = useGetIdentity<IUser>();
 
   return (
     <AppBar position={isSticky ? "sticky" : "relative"}>
@@ -33,7 +35,13 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
           justifyContent="flex-end"
           alignItems="center"
         >
-          <HamburgerMenu />
+          <ThemeProvider theme={iconTheme}>
+            <Typography sx={{
+              padding: '0.5rem',
+              fontWeight: '700',
+              color: mode === 'light' ? '#000' : '#fff',
+            }}>I</Typography>
+          </ThemeProvider>
           <Stack
             direction="row"
             width="100%"
@@ -46,10 +54,10 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
                 setMode();
               }}
             >
-              {mode === "dark" ? <LightModeOutlined /> : <DarkModeOutlined />}
+              {mode === "dark" ? <WbSunnyIcon /> : <DarkModeIcon />}
             </IconButton>
 
-            {(user?.avatar || user?.name) && (
+            {/* {(user?.avatar || user?.name) && (
               <Stack
                 direction="row"
                 gap="16px"
@@ -71,7 +79,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
                 )}
                 <Avatar src={user?.avatar} alt={user?.name} />
               </Stack>
-            )}
+            )} */}
           </Stack>
         </Stack>
       </Toolbar>
