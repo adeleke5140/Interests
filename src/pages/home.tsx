@@ -1,24 +1,36 @@
-import { styled, Box, Button, Chip, Divider, FormControl, InputLabel, MenuItem, Select, Stack, ThemeProvider, Typography, SelectChangeEvent, InputBase, FormLabel, RadioGroup, FormControlLabel, Radio, TextField } from "@mui/material"
-import { BottomMenu, Header } from "components"
-import { headerTheme } from "contexts/theme"
+import { Box, Button, Chip, Divider, FormControl, InputLabel, MenuItem, Select, Stack, ThemeProvider, Typography, SelectChangeEvent, InputBase, FormLabel, RadioGroup, FormControlLabel, Radio, TextField } from "@mui/material"
+
+import { headerTheme, theme } from "contexts/theme"
 import InterestsIcon from '@mui/icons-material/Interests';
 import { useState } from "react";
 import { useColorMode } from "contexts/color-mode";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { Dayjs } from "dayjs";
 
 
-
-const Home = () => {
-  const [interest, setInterest] = useState('')
-  const [category, setCategory] = useState('female');
+const HomePage = () => {
+  const [activity, setActivity] = useState('')
+  const [category, setCategory] = useState('');
+  const [name, setName] = useState('')
+  const [date, setDate] = useState<Dayjs | null>(null)
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCategory((event.target as HTMLInputElement).value);
   };
+
+  const saveInterest = () => {
+    if (activity && category && date && name) {
+      console.log({
+        activity,
+        category,
+        date,
+        name
+      })
+    }
+  }
   const { mode } = useColorMode()
   return (
     <>
-      <Header />
-
       <Box sx={{ paddingTop: '1em', paddingLeft: '1em', paddingRight: '1em' }}>
         <ThemeProvider theme={headerTheme}>
           <Typography sx={{ fontSize: '1.5rem', fontWeight: '600' }}>
@@ -27,7 +39,7 @@ const Home = () => {
         </ThemeProvider>
         <Stack spacing={2}>
           <Box>
-            Any spectacular <Chip color="primary" icon={<InterestsIcon />} size="small" label="interests" /> today?
+            Any spectacular <Chip color="primary" icon={<InterestsIcon />} size="small" label="activitys" /> today?
           </Box>
           <Divider variant="middle" />
           <Typography fontSize={18} fontWeight={600}>
@@ -55,9 +67,9 @@ const Home = () => {
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value={interest}
+                value={activity}
                 label="activity"
-                onChange={(e) => setInterest(e.target.value as string)}
+                onChange={(e) => setActivity(e.target.value as string)}
                 sx={{
                   '& .MuiSelect-root': {
                     color: "#5baffa"
@@ -81,7 +93,7 @@ const Home = () => {
               '& .MuiInputLabel-formControl': {
                 color: `${mode === 'dark' ? "#5baffa" : "rgba(0, 0, 0, 0.6)"}`
               }
-            }} fullWidth id="outlined-basic" label="name" variant="outlined" />
+            }} value={name} onChange={(e) => setName(e.target.value)} fullWidth id="outlined-basic" label="name" variant="outlined" />
           </Box>
           <Box>
             <FormControl sx={{
@@ -120,14 +132,25 @@ const Home = () => {
             </FormControl>
           </Box>
           <Box>
-            Date
+            <Typography sx={{ mb: 2 }}>Date: </Typography>
+            <DatePicker sx={{
+              width: "100%",
+              '& .MuiOutlinedInput-notchedOutline': {
+                borderColor: `${mode === 'dark' ? "#5baffa" : "rgba(0, 0, 0, 0.23)"}`,
+              }
+            }} value={date} onChange={
+              (newDate) => setDate(newDate)
+            } />
           </Box>
-          <Button variant="contained">Save</Button>
+          <Button sx={{
+            '&.MuiButtonBase-root.Mui-disabled.Mui-disabled': {
+              backgroundColor: `${mode === 'dark' ? '#5baffa' : 'rgba(0, 0, 0, 0.12)'}`
+            }
+          }} disabled={!activity || !category || !date || !name} onClick={saveInterest} variant="contained" disableElevation>Save</Button>
         </Stack>
       </Box >
-      <BottomMenu />
     </>
   )
 }
 
-export { Home }
+export default HomePage

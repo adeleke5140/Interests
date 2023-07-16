@@ -1,39 +1,48 @@
+# tutorial
 
-# Interests
-Track your interests over time.
+<div align="center" style="margin: 30px;">
+    <a href="https://refine.dev">
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/refine_logo.png"  align="center" />
+    </a>
+</div>
+<br/>
 
-![project cover](https://github.com/adeleke5140/Interests/blob/main/cover-image.jpg)
+This [refine](https://github.com/pankod/refine) project was generated with [superplate](https://github.com/pankod/refine).
 
-[Demo Link]()
+## Getting Started
 
-## About
+**refine** is a React-based framework for building data-intensive applications in no time ✨
 
-### Description
-Have you ever wanted to remember that movie you watched 2yrs ago that you can't quite remmember? It's on the tip of our tongue...but it's not clear. I certainly have.
+Refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to admin panels, B2B applications and dashboards.
 
-We all have many interests that have changed over time. Specifically Interests in media content. For me, it specifically has to do with books, anime or movies I watched a couple of times in the past and can't remember right now. I wish I could remember it, better still, I wished I had tracked it so that in the future, I would be able to come back to it.
+## Available Scripts
 
-That is what *Interest* does. 
-Interests helps you track all your interest chronologically, in an easy use interface. 
-You never have to rack your brains to remember that old high school movie you watched with your friends, or that random show you saw at Grandma's house. Once you have tracked it with interests, it can be retrieved.
+### Running the development server.
 
-Interest is available for **web**, and **mobile**.
-
-### Participant
-[Github](https://github.com/adeleke5140)
-[Twitter](https://twitter.com/adeleke5140)
-
-### Prerequisite
-To preview on your local development environment, you would need a `supabase` account. 
-
-### Install locally
-
-* Clone the repository
+```bash
+    npm run dev
 ```
-git clone <repo-url>
+
+### Building for production.
+
+```bash
+    npm run build
 ```
-* Change directory and install dependencies:
+
+### Running the production server.
+
+```bash
+    npm run start
 ```
-cd interests
-npm install
-```
+
+## Learn More
+
+To learn more about **refine**, please check out the [Documentation](https://refine.dev/docs)
+
+- **Material UI** [Docs](https://refine.dev/docs/ui-frameworks/mui/tutorial/)
+- **React Router** [Docs](https://refine.dev/docs/core/providers/router-provider/)
+- **REST Data Provider** [Docs](https://refine.dev/docs/core/providers/data-provider/#overview)
+
+## License
+
+MIT

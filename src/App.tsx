@@ -1,4 +1,4 @@
-import { NotificationProvider, Refine } from "@refinedev/core";
+import { Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
 import { ErrorComponent, RefineSnackbarProvider } from "@refinedev/mui";
@@ -22,8 +22,16 @@ import { dataProvider, liveProvider } from './providers/supabase';
 import { notificationProvider } from "./notification";
 import { authProvider } from "./providers/supabase/authProvider";
 import { supabaseClient } from "./providers/supabase/client";
+
 import { Index } from "./pages/index";
-import { Home } from "./pages/home";
+
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import HomePage from "pages/home";
+import ProfilePage from "pages/profile";
+import InterestsPage from "pages/interests";
+import { Layout } from "components/layout";
+
 
 function App() {
   return (
@@ -33,30 +41,36 @@ function App() {
           <CssBaseline />
           <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
           <RefineSnackbarProvider>
-            <Refine
-              authProvider={authProvider}
-              notificationProvider={notificationProvider}
-              routerProvider={routerBindings}
-              dataProvider={dataProvider(supabaseClient)}
-              liveProvider={liveProvider(supabaseClient)}
-              options={{
-                syncWithLocation: true,
-                warnWhenUnsavedChanges: true,
-              }}
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <Refine
+                authProvider={authProvider}
+                notificationProvider={notificationProvider}
+                routerProvider={routerBindings}
+                dataProvider={dataProvider(supabaseClient)}
+                liveProvider={liveProvider(supabaseClient)}
+                options={{
+                  syncWithLocation: true,
+                  warnWhenUnsavedChanges: true,
+                }}
 
-            >
-              <ThemeProvider theme={theme}>
-                <Routes>
-                  <Route index element={<Index />} />
-                  <Route path="/home" element={<Home />} />
-                  <Route path="*" element={<ErrorComponent />} />
-                </Routes>
-              </ThemeProvider>
-              <RefineKbar />
-              <UnsavedChangesNotifier />
-              <DocumentTitleHandler />
-              <Toaster />
-            </Refine>
+              >
+                <ThemeProvider theme={theme}>
+                  <Routes>
+                    <Route index element={<Index />} />
+                    <Route element={<Layout />}>
+                      <Route path="/home" element={<HomePage />} />
+                      <Route path="/interests" element={<InterestsPage />} />
+                      <Route path="/profile" element={<ProfilePage />} />
+                    </Route>
+                    <Route path="*" element={<ErrorComponent />} />
+                  </Routes>
+                </ThemeProvider>
+                <RefineKbar />
+                <UnsavedChangesNotifier />
+                <DocumentTitleHandler />
+                <Toaster />
+              </Refine>
+            </LocalizationProvider>
           </RefineSnackbarProvider>
         </ColorModeContextProvider>
       </RefineKbarProvider>
