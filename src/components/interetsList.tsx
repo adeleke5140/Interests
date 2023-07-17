@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Chip, Stack, ThemeProvider, Typography } from "@mui/material"
+import { Box, Card, CardContent, Chip, Skeleton, Stack, ThemeProvider, Typography } from "@mui/material"
 import { useGetIdentity, useList, useOne } from "@refinedev/core"
 import { useColorMode } from "contexts/color-mode"
 import { headerTheme } from "contexts/theme"
@@ -25,11 +25,10 @@ const interests = [
 type InterestsType = typeof interests
 
 const InterestsList = () => {
-  const [userInterests, setUserInterests] = useState<InterestsType>([])
   const { data: user } = useGetIdentity<IUser>()
   const { mode } = useColorMode()
 
-  const interests = useList({
+  const { data, isLoading, isError } = useList({
     resource: 'interests',
     filters: [
       {
@@ -40,11 +39,29 @@ const InterestsList = () => {
     ]
   })
 
-  useEffect(() => {
-    setUserInterests(interests.data?.data as InterestsType)
-  }, [interests])
+  const interests = data?.data ?? [] as InterestsType
 
-  if (!userInterests) {
+  if (isLoading) {
+    return (
+      <Box sx={{ paddingTop: '1em', paddingLeft: '1em', paddingRight: '1em' }}>
+        <ThemeProvider theme={headerTheme}>
+          <Typography sx={{ fontSize: '1.5rem', fontWeight: '600', mb: 2 }}>
+            Your Saved Interests
+          </Typography>
+        </ThemeProvider>
+        <Stack spacing={2}>
+          <Skeleton variant="rounded" width="full" height={80} />
+          <Skeleton variant="rounded" width="full" height={80} />
+        </Stack>
+      </Box>
+    )
+  }
+
+  if (isError) {
+    return <>An Error occured, please try again later</>
+  }
+
+  if (!interests) {
     return (
       <Box sx={{ paddingTop: '1em', paddingLeft: '1em', paddingRight: '1em' }}>
         <ThemeProvider theme={headerTheme}>
@@ -67,7 +84,7 @@ const InterestsList = () => {
         </Typography>
       </ThemeProvider>
       <Stack spacing={2}>
-        {userInterests.map((interest) => (
+        {interests.map((interest) => (
           <Card key={interest.name} sx={{
             backgroundColor: `${mode === 'dark' ? 'unset' : ""}`,
             border: `${mode === 'dark' ? '1px solid' : ""}`,
