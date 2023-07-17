@@ -1,6 +1,9 @@
-import { Box, Card, CardContent, Chip, Paper, Stack, ThemeProvider, Typography } from "@mui/material"
+import { Box, Card, CardContent, Chip, Stack, ThemeProvider, Typography } from "@mui/material"
+import { useGetIdentity, useList, useOne } from "@refinedev/core"
 import { useColorMode } from "contexts/color-mode"
 import { headerTheme } from "contexts/theme"
+import { IUser } from "pages/home"
+import { useEffect, useState } from "react"
 
 const interests = [
   {
@@ -19,9 +22,44 @@ const interests = [
   }
 ]
 
+type InterestsType = typeof interests
+
 const InterestsList = () => {
+  const [userInterests, setUserInterests] = useState<InterestsType>([])
+  const { data: user } = useGetIdentity<IUser>()
   const { mode } = useColorMode()
-  return <>
+
+  const interests = useList({
+    resource: 'interests',
+    filters: [
+      {
+        field: 'userId',
+        operator: 'eq',
+        value: user?.id
+      }
+    ]
+  })
+
+  useEffect(() => {
+    setUserInterests(interests.data?.data as InterestsType)
+  }, [interests])
+
+  if (!userInterests) {
+    return (
+      <Box sx={{ paddingTop: '1em', paddingLeft: '1em', paddingRight: '1em' }}>
+        <ThemeProvider theme={headerTheme}>
+          <Typography sx={{ fontSize: '1.5rem', fontWeight: '600', mb: 2 }}>
+            Your Saved Interests
+          </Typography>
+        </ThemeProvider>
+        <Stack spacing={2}>
+          <Typography>No Interests yet...</Typography>
+        </Stack>
+      </Box>
+    )
+  }
+
+  return (
     <Box sx={{ paddingTop: '1em', paddingLeft: '1em', paddingRight: '1em' }}>
       <ThemeProvider theme={headerTheme}>
         <Typography sx={{ fontSize: '1.5rem', fontWeight: '600', mb: 2 }}>
@@ -29,8 +67,8 @@ const InterestsList = () => {
         </Typography>
       </ThemeProvider>
       <Stack spacing={2}>
-        {interests.map((interest) => (
-          <Card sx={{
+        {userInterests.map((interest) => (
+          <Card key={interest.name} sx={{
             backgroundColor: `${mode === 'dark' ? 'unset' : ""}`,
             border: `${mode === 'dark' ? '1px solid' : ""}`,
           }}>
@@ -54,6 +92,6 @@ const InterestsList = () => {
         <Typography>Load More</Typography>
       </Stack>
     </Box>
-  </>
+  )
 }
 export { InterestsList }
