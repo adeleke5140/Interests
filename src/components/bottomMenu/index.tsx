@@ -9,7 +9,7 @@ export const BottomMenu = () => {
   const [value, setValue] = useState('home')
   const navigate = useNavigate()
   useEffect(() => {
-    if (value === "home") navigate('/home')
+    if (value === "home") navigate('/create')
     if (value === 'interest') navigate('/interests')
     if (value === 'profile') navigate('/profile')
   }, [value, navigate])
