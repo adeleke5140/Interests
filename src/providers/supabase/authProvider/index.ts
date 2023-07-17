@@ -30,6 +30,11 @@ export const authProvider: AuthBindings = {
       })
 
       if (error) {
+        notification.open({
+          type: "error",
+          message:
+            "Login failed. Check your credentials and try again",
+        });
         return {
           success: false,
           error
@@ -46,7 +51,7 @@ export const authProvider: AuthBindings = {
         success: false,
         error: {
           message: 'Login Failed',
-          name: 'Inalid email or password'
+          name: 'Invalid email or password'
         }
       }
 
