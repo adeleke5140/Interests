@@ -1,46 +1,89 @@
 import { Box, Button, Chip, Divider, FormControl, InputLabel, MenuItem, Select, Stack, ThemeProvider, Typography, SelectChangeEvent, InputBase, FormLabel, RadioGroup, FormControlLabel, Radio, TextField } from "@mui/material"
 
-import { headerTheme, theme } from "contexts/theme"
+import { headerTheme } from "contexts/theme"
 import InterestsIcon from '@mui/icons-material/Interests';
 import { useState } from "react";
 import { useColorMode } from "contexts/color-mode";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { Dayjs } from "dayjs";
+import { useCreate, useGetIdentity } from "@refinedev/core";
 
+export type IUser = {
+  id: number;
+  name: string;
+  avatar: string;
+  email: string;
+};
 
 const HomePage = () => {
   const [activity, setActivity] = useState('')
   const [category, setCategory] = useState('');
   const [name, setName] = useState('')
   const [date, setDate] = useState<Dayjs | null>(null)
+  const { mutate: create } = useCreate()
+
+  const { data: user } = useGetIdentity<IUser>()
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCategory((event.target as HTMLInputElement).value);
   };
 
   const saveInterest = () => {
-    if (activity && category && date && name) {
-      console.log({
-        activity,
-        category,
-        date,
-        name
+    if (activity && category && name && date) {
+      create({
+        resource: 'interests',
+        values: {
+          userId: user?.id,
+          activity,
+          category,
+          name,
+          date
+        },
+        errorNotification: (data, values, resource) => {
+          return {
+            message: `Could not save Interest, try again`,
+            description: "Error",
+            type: "error",
+          };
+        },
+        successNotification: (data, values, resource) => {
+          return {
+            message: `Interest Saved`,
+            description: "Success with no errors",
+            type: "success",
+          };
+        }
+      }, {
+        onSuccess: () => {
+          setActivity('')
+          setName('')
+          setCategory('')
+          setDate(null)
+        }
       })
     }
+
   }
+
   const { mode } = useColorMode()
   return (
     <>
       <Box sx={{ paddingTop: '1em', paddingLeft: '1em', paddingRight: '1em' }}>
         <ThemeProvider theme={headerTheme}>
-          <Typography sx={{ fontSize: '1.5rem', fontWeight: '600' }}>
-            Hi, Kehinde
+          <Typography sx={{
+            fontSize: {
+              xs: '1.2rem',
+              sm: '1.5rem'
+            }, fontWeight: '600',
+            mb: 1
+          }}>
+            Hi, {user?.name}
           </Typography>
         </ThemeProvider>
         <Stack spacing={2}>
-          <Box>
-            Any spectacular <Chip color="primary" icon={<InterestsIcon />} size="small" label="activitys" /> today?
-          </Box>
+          <Typography>
+            Any spectacular <Chip color="primary" icon={<InterestsIcon />} size="small" label="activities" /> today?
+          </Typography>
           <Divider variant="middle" />
           <Typography fontSize={18} fontWeight={600}>
             Track it:
