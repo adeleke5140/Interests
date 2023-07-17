@@ -1,6 +1,6 @@
-import { ThemeProvider } from '@emotion/react';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
-import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import { ThemeProvider } from "@emotion/react";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import AppBar from "@mui/material/AppBar";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
@@ -9,19 +9,16 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { useGetIdentity } from "@refinedev/core";
 import { RefineThemedLayoutV2HeaderProps } from "@refinedev/mui";
-import { iconTheme } from 'contexts/theme';
+import { iconTheme } from "contexts/theme";
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { useColorMode } from "../../contexts/color-mode";
-
 
 type IUser = {
   id: number;
   name: string;
   avatar: string;
 };
-
-
 
 export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
   isSticky = true,
@@ -30,9 +27,6 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
 
   const { data: user } = useGetIdentity<IUser>();
 
-  console.log({
-    user
-  })
   return (
     <AppBar position={isSticky ? "sticky" : "relative"}>
       <Toolbar>
@@ -43,15 +37,23 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
           alignItems="center"
         >
           <ThemeProvider theme={iconTheme}>
-            <Typography sx={{
-              padding: '0.5rem',
-              fontWeight: '700',
-              color: mode === 'light' ? '#000' : '#fff',
-            }}>
-              <Link to='/' style={{
-                color: mode === 'light' ? '#000' : '#fff',
-                textDecoration: 'none'
-              }}>I</Link></Typography>
+            <Typography
+              sx={{
+                padding: "0.5rem",
+                fontWeight: "700",
+                color: mode === "light" ? "#000" : "#fff",
+              }}
+            >
+              <Link
+                to="/"
+                style={{
+                  color: mode === "light" ? "#000" : "#fff",
+                  textDecoration: "none",
+                }}
+              >
+                I
+              </Link>
+            </Typography>
           </ThemeProvider>
           <Stack
             direction="row"
@@ -88,7 +90,15 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
                     {user?.name}
                   </Typography>
                 )}
-                <Avatar sx={{ bgcolor: '#fff', color: '#5baffa', textTransform: 'uppercase' }}>{user?.name.charAt(0)}</Avatar>
+                <Avatar
+                  sx={{
+                    bgcolor: "#fff",
+                    color: "#5baffa",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {user?.name.charAt(0)}
+                </Avatar>
               </Stack>
             )}
           </Stack>
