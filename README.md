@@ -1,48 +1,36 @@
-# tutorial
+# Interests
+Track your interests over time.
 
-<div align="center" style="margin: 30px;">
-    <a href="https://refine.dev">
-    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/refine_logo.png"  align="center" />
-    </a>
-</div>
-<br/>
+![project cover](https://github.com/adeleke5140/Interests/blob/main/cover-image.jpg)
 
-This [refine](https://github.com/pankod/refine) project was generated with [superplate](https://github.com/pankod/refine).
+[Demo Link]()
 
-## Getting Started
+## About
 
-**refine** is a React-based framework for building data-intensive applications in no time ✨
+### Description
+We all have many interests that have changed over time. Specifically Interests in media content. For me, it specifically has to do with books, anime or movies I watched a couple of times in the past and can't remember right now. I wish I could remember it, better still, I wished I had tracked it so that in the future, I would be able to come back to it.
 
-Refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to admin panels, B2B applications and dashboards.
+That is what *Interest* does. 
+Interests helps you track all your interest chronologically, in an easy use interface. 
+You never have to rack your brains to remember that old high school movie you watched with your friends, or that random show you saw at Grandma's house. Once you have tracked it with interests, it can be retrieved.
 
-## Available Scripts
+Interest is available for *web*, and *mobile*.
 
-### Running the development server.
+### Participant
+[Github](https://github.com/adeleke5140)
+[Twitter](https://twitter.com/adeleke5140)
 
-```bash
-    npm run dev
+### Prerequisite
+To preview on your local development environment, you would need a `supabase` account. 
+
+### Install locally
+
+* Clone the repository
 ```
-
-### Building for production.
-
-```bash
-    npm run build
+git clone git@github.com:adeleke5140/Interests.git
 ```
-
-### Running the production server.
-
-```bash
-    npm run start
+* Change directory and install dependencies:
 ```
-
-## Learn More
-
-To learn more about **refine**, please check out the [Documentation](https://refine.dev/docs)
-
-- **Material UI** [Docs](https://refine.dev/docs/ui-frameworks/mui/tutorial/)
-- **React Router** [Docs](https://refine.dev/docs/core/providers/router-provider/)
-- **REST Data Provider** [Docs](https://refine.dev/docs/core/providers/data-provider/#overview)
-
-## License
-
-MIT
+cd interests
+npm install
+```
