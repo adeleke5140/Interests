@@ -122,7 +122,9 @@ function App() {
                       <Route
                         path="/register"
                         element={
-                          <div>
+                          <div style={{
+                            marginTop: '-4em'
+                          }}>
                             <Header />
                             <AuthPage title={
                               <h3 style={{
@@ -130,6 +132,18 @@ function App() {
                                 fontFamily: 'Raleway Variable',
                                 marginBottom: 0
                               }}>Interests</h3>} type="register" />
+                            <Box sx={{ textAlign: 'center', mt: -4 }}>
+                              <Typography>© No rights reserved -
+                                <a
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  href='https://github.com/adeleke5140'
+                                  style={{
+                                    color: '#5baffa'
+                                  }}>
+                                  adeleke5140
+                                </a></Typography>
+                            </Box>
                           </div>
                         }
                       />
