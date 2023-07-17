@@ -1,4 +1,4 @@
-import { Box, Button, Chip, Divider, FormControl, InputLabel, MenuItem, Select, Stack, ThemeProvider, Typography, SelectChangeEvent, InputBase, FormLabel, RadioGroup, FormControlLabel, Radio, TextField } from "@mui/material"
+import { Box, Button, Chip, Divider, FormControl, InputLabel, MenuItem, Select, Stack, ThemeProvider, Typography, SelectChangeEvent, InputBase, FormLabel, RadioGroup, FormControlLabel, Radio, TextField, Skeleton } from "@mui/material"
 
 import { headerTheme } from "contexts/theme"
 import InterestsIcon from '@mui/icons-material/Interests';
@@ -70,15 +70,21 @@ const HomePage = () => {
     <>
       <Box sx={{ paddingTop: '1em', paddingLeft: '1em', paddingRight: '1em' }}>
         <ThemeProvider theme={headerTheme}>
-          <Typography sx={{
-            fontSize: {
-              xs: '1.2rem',
-              sm: '1.5rem'
-            }, fontWeight: '600',
-            mb: 1
-          }}>
-            Hi, {user?.name}
-          </Typography>
+          <Stack direction="row" alignItems="center" gap={1}>
+            <Typography sx={{
+              display: 'inline-block'
+            }}>Hi, </Typography>
+            <Typography sx={{
+              fontSize: {
+                xs: '1.2rem',
+                sm: '1.5rem'
+              }, fontWeight: '600',
+              mb: 1,
+              display: 'inline-block'
+            }} variant="h1" component="h1">
+              {user?.name ? user.name : '...'}
+            </Typography>
+          </Stack>
         </ThemeProvider>
         <Stack spacing={2}>
           <Typography>
@@ -97,13 +103,17 @@ const HomePage = () => {
             </Typography>
             <FormControl sx={{
               '& .MuiFormLabel-root.MuiInputLabel-root': {
-                color: `${mode === 'dark' ? "#5baffa" : "rgba(0, 0, 0, 0.6)"}`
+                color: `${mode === 'dark' ? "#5baffa" : "rgba(0, 0, 0, 0.6)"}`,
+
               },
               '& .MuiOutlinedInput-notchedOutline': {
                 borderColor: `${mode === 'dark' ? "#5baffa" : "rgba(0, 0, 0, 0.23)"}`
               },
               '& .MuiButtonBase-root.MuiMenuItem-root': {
                 color: '#000'
+              },
+              "& .MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-formControl": {
+                borderRadius: '20px'
               }
             }} fullWidth>
               <InputLabel id="demo-simple-select-label">Activity</InputLabel>
@@ -131,7 +141,8 @@ const HomePage = () => {
             <TextField sx={{
               '& .MuiOutlinedInput-notchedOutline ': {
                 borderColor: `${mode === 'dark' ? "#5baffa" : "rgba(0, 0, 0, 0.23)"}`,
-                color: '#5baffa'
+                color: '#5baffa',
+                borderRadius: '20px'
               },
               '& .MuiInputLabel-formControl': {
                 color: `${mode === 'dark' ? "#5baffa" : "rgba(0, 0, 0, 0.6)"}`
@@ -180,6 +191,7 @@ const HomePage = () => {
               width: "100%",
               '& .MuiOutlinedInput-notchedOutline': {
                 borderColor: `${mode === 'dark' ? "#5baffa" : "rgba(0, 0, 0, 0.23)"}`,
+                borderRadius: '20px'
               }
             }} value={date} onChange={
               (newDate) => setDate(newDate)
