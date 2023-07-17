@@ -38,6 +38,7 @@ export const authProvider: AuthBindings = {
       if (data?.user) {
         return {
           success: true,
+          redirectTo: '/create'
         }
       }
 
@@ -70,8 +71,14 @@ export const authProvider: AuthBindings = {
       }
 
       if (data) {
+        notification.open({
+          type: "success",
+          message:
+            "A confirmation email has been sent to your email. Click it to Login",
+        });
         return {
           success: true,
+          redirectTo: '/create'
         }
       }
     } catch (err: any) {
@@ -220,7 +227,7 @@ export const authProvider: AuthBindings = {
     return null;
   },
   getIdentity: async () => {
-    const { data } = await supabaseClient.auth.getUser();
+    const { data } = await supabaseClient.auth.getUser()
 
     if (data?.user) {
       return {
@@ -231,4 +238,5 @@ export const authProvider: AuthBindings = {
 
     return null;
   },
+
 }
