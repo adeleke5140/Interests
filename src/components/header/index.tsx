@@ -51,7 +51,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
                   textDecoration: "none",
                 }}
               >
-                I
+                Interests
               </Link>
             </Typography>
           </ThemeProvider>
@@ -77,7 +77,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
                 alignItems="center"
                 justifyContent="center"
               >
-                {user?.name && (
+                {user?.name ? (
                   <Typography
                     sx={{
                       display: {
@@ -89,7 +89,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
                   >
                     {user?.name}
                   </Typography>
-                )}
+                ) : '...'}
                 <Avatar
                   sx={{
                     bgcolor: "#fff",
