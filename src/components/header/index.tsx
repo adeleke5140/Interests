@@ -11,7 +11,9 @@ import { useGetIdentity } from "@refinedev/core";
 import { RefineThemedLayoutV2HeaderProps } from "@refinedev/mui";
 import { iconTheme } from 'contexts/theme';
 import React from "react";
+import { Link } from 'react-router-dom';
 import { useColorMode } from "../../contexts/color-mode";
+
 
 type IUser = {
   id: number;
@@ -19,13 +21,18 @@ type IUser = {
   avatar: string;
 };
 
+
+
 export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
   isSticky = true,
 }) => {
   const { mode, setMode } = useColorMode();
 
-  // const { data: user } = useGetIdentity<IUser>();
+  const { data: user } = useGetIdentity<IUser>();
 
+  console.log({
+    user
+  })
   return (
     <AppBar position={isSticky ? "sticky" : "relative"}>
       <Toolbar>
@@ -40,7 +47,11 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
               padding: '0.5rem',
               fontWeight: '700',
               color: mode === 'light' ? '#000' : '#fff',
-            }}>I</Typography>
+            }}>
+              <Link to='/' style={{
+                color: mode === 'light' ? '#000' : '#fff',
+                textDecoration: 'none'
+              }}>I</Link></Typography>
           </ThemeProvider>
           <Stack
             direction="row"
@@ -57,7 +68,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
               {mode === "dark" ? <WbSunnyIcon /> : <DarkModeIcon />}
             </IconButton>
 
-            {/* {(user?.avatar || user?.name) && (
+            {(user?.avatar || user?.name) && (
               <Stack
                 direction="row"
                 gap="16px"
@@ -77,9 +88,9 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
                     {user?.name}
                   </Typography>
                 )}
-                <Avatar src={user?.avatar} alt={user?.name} />
+                <Avatar sx={{ bgcolor: '#fff', color: '#5baffa', textTransform: 'uppercase' }}>{user?.name.charAt(0)}</Avatar>
               </Stack>
-            )} */}
+            )}
           </Stack>
         </Stack>
       </Toolbar>
