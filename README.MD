@@ -20,6 +20,10 @@ Interest is available for *web*, and *mobile*.
 [Github](https://github.com/adeleke5140)
 [Twitter](https://twitter.com/adeleke5140)
 
+### Preview
+Homepage
+[HomePage](https://github.com/adeleke5140/Interests/blob/main/homepage.png?raw=true)
+
 ### Prerequisite
 To preview on your local development environment, you would need a `supabase` account. 
 
