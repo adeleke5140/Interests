@@ -3,7 +3,7 @@ Track your interests over time.
 
 ![project cover](https://github.com/adeleke5140/Interests/blob/main/cover-image.jpg)
 
-[Demo Link]()
+[Demo Link](https://interests.vercel.app/)
 
 ## About
 
