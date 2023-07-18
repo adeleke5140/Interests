@@ -28,7 +28,7 @@ Interests Page
 ![InterestsPage](https://github.com/adeleke5140/Interests/blob/main/interests.png?raw=true)
 
 Profile Page
-![ProfilePage]()
+![ProfilePage](https://github.com/adeleke5140/Interests/blob/main/profile.png?raw=true)
 
 ### Prerequisite
 To preview on your local development environment, you would need a `supabase` account. 
