@@ -24,6 +24,12 @@ Interest is available for *web*, and *mobile*.
 Homepage
 ![HomePage](https://github.com/adeleke5140/Interests/blob/main/homepage.png?raw=true)
 
+Interests Page
+![InterestsPage](https://github.com/adeleke5140/Interests/blob/main/interests.png?raw=true)
+
+Profile Page
+![ProfilePage]()
+
 ### Prerequisite
 To preview on your local development environment, you would need a `supabase` account. 
 
