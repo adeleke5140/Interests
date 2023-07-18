@@ -44,3 +44,6 @@ git clone git@github.com:adeleke5140/Interests.git
 cd interests
 npm install
 ```
+
+### License
+MIT
