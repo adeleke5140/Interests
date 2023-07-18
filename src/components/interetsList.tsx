@@ -83,7 +83,7 @@ const InterestsList = () => {
     return <>An Error occured, please try again later</>
   }
 
-  if (!interests) {
+  if (interests.length === 0) {
     return (
       <Box sx={{ paddingTop: '1em', paddingLeft: '1em', paddingRight: '1em' }}>
         <ThemeProvider theme={headerTheme}>
@@ -92,7 +92,7 @@ const InterestsList = () => {
           </Typography>
         </ThemeProvider>
         <Stack spacing={2}>
-          <Typography>No Interests yet...</Typography>
+          <Typography>No Interests yet...😢</Typography>
         </Stack>
       </Box>
     )
